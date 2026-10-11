@@ -1,67 +1,957 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dashboard งานผลิตยาแผนไทย | ปีงบประมาณ 2569</title>
-<style>
-:root{--ink:#172b4d;--muted:#68778d;--bg:#f4f7fb;--card:#fff;--green:#087f5b;--teal:#11a8a1;--gold:#f4b942;--blue:#4c6fff;--purple:#8967d7;--coral:#f27878;--line:#e7edf4;--shadow:0 12px 35px rgba(28,49,84,.08)}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 5% 0%,#e3fff3 0,transparent 28%),radial-gradient(circle at 100% 10%,#e9edff 0,transparent 30%),var(--bg);font-family:"Sarabun","Leelawadee UI",Tahoma,sans-serif;color:var(--ink)}
-header{background:linear-gradient(120deg,#073b35,#087f5b 55%,#16a89b);color:#fff;padding:30px clamp(18px,4vw,54px) 28px;position:relative;overflow:hidden}header:after{content:"";position:absolute;width:340px;height:340px;border:1px solid #ffffff2b;border-radius:50%;right:-70px;top:-190px;box-shadow:0 0 0 35px #ffffff0b,0 0 0 75px #ffffff0b}
-.eyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;opacity:.8}.headrow{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}h1{font-size:clamp(27px,4vw,42px);margin:8px 0 5px;line-height:1.18}header p{margin:0;opacity:.88}.datepill{background:#ffffff1e;border:1px solid #ffffff55;padding:10px 14px;border-radius:14px;font-size:13px}
-main{max-width:1440px;margin:auto;padding:25px clamp(14px,3vw,40px) 42px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:18px}.toolbar button,.toolbar input{font:inherit;border:1px solid var(--line);background:#fff;color:var(--ink);padding:10px 14px;border-radius:12px}.toolbar button{cursor:pointer;font-weight:700}.toolbar button.active{background:var(--ink);color:#fff}.toolbar input{margin-left:auto;min-width:230px;flex:1;max-width:340px}
-.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px;margin-bottom:18px}.kpi,.panel{background:var(--card);border:1px solid #e8edf4;border-radius:20px;box-shadow:var(--shadow)}.kpi{padding:19px;position:relative;overflow:hidden}.kpi:after{content:"";position:absolute;width:90px;height:90px;border-radius:50%;right:-27px;top:-28px;background:var(--tint,#e5f8ef)}.kpi .label{color:var(--muted);font-size:13px;position:relative;z-index:1}.kpi .value{font-size:clamp(21px,2.4vw,30px);font-weight:850;letter-spacing:-.6px;margin:9px 0 6px;position:relative;z-index:1;overflow-wrap:anywhere}.kpi .sub{font-size:12px;color:var(--muted)}.kpi .symbol{position:absolute;right:16px;bottom:13px;font-size:24px;z-index:1}
-.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:17px}.panel{padding:20px;min-width:0}.span-8{grid-column:span 8}.span-7{grid-column:span 7}.span-6{grid-column:span 6}.span-5{grid-column:span 5}.span-4{grid-column:span 4}.span-12{grid-column:span 12}.panel h2{font-size:17px;margin:0 0 4px}.desc{font-size:12px;color:var(--muted);margin-bottom:15px}.chart{width:100%;min-height:250px;overflow:hidden}.chart svg{width:100%;height:auto;display:block}.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:9px}.dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px}
-.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0 14px}.tabs button{border:1px solid var(--line);border-radius:10px;background:#f6f8fb;padding:8px 11px;cursor:pointer;color:var(--ink)}.tabs button.active{background:#e1f8ee;border-color:#a7e8cb;color:#087f5b;font-weight:700}
-.tablewrap{overflow:auto;max-height:470px;border:1px solid var(--line);border-radius:12px}table{border-collapse:collapse;width:100%;font-size:12px;white-space:nowrap}th{position:sticky;top:0;background:#eaf6f2;color:#174b43;text-align:left;z-index:1}td,th{padding:10px 11px;border-bottom:1px solid var(--line)}tbody tr:nth-child(even){background:#fafcff}td.num{text-align:right;font-variant-numeric:tabular-nums}.callout{padding:14px 16px;border-radius:14px;background:#fff8e7;border:1px solid #f7dfa0;color:#73511b;font-size:13px;line-height:1.65}.note{color:var(--muted);font-size:12px;line-height:1.65}.barlist{display:flex;flex-direction:column;gap:12px}.barrow{display:grid;grid-template-columns:minmax(90px,1.1fr) 3fr minmax(90px,.9fr);gap:10px;align-items:center;font-size:12px}.track{height:12px;background:#edf1f7;border-radius:30px;overflow:hidden}.fill{height:100%;border-radius:30px;background:linear-gradient(90deg,var(--green),var(--teal))}.barval{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
-footer{text-align:center;color:var(--muted);font-size:12px;padding:22px 10px}.hidden{display:none!important}
-@media(max-width:1000px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.span-8,.span-7,.span-6,.span-5,.span-4{grid-column:span 12}}
-@media(max-width:560px){.kpis{grid-template-columns:1fr 1fr;gap:9px}.kpi{padding:13px}.kpi .value{font-size:19px}.panel{padding:15px}.barrow{grid-template-columns:90px 1fr}.barval{grid-column:2}.toolbar input{margin-left:0;max-width:none;width:100%}}
-@media print{body{background:white}header{print-color-adjust:exact}.toolbar{display:none}.panel,.kpi{box-shadow:none;break-inside:avoid}.grid{gap:10px}}
-</style></head><body>
-<header><div class="eyebrow">EXECUTIVE PERFORMANCE DASHBOARD</div><div class="headrow"><div><h1>Dashboard งานผลิตยาแผนไทย</h1><p>กลุ่มงานการแพทย์แผนไทยและแพทย์ทางเลือก · โรงพยาบาลสรรคบุรี</p></div><div class="datepill">◷ ข้อมูล ณ วันที่ 30 กันยายน 2569</div></div></header>
-<main>
-<div class="toolbar" id="toolbar"><button class="active" data-view="all">ภาพรวม</button><button data-view="production">การผลิต</button><button data-view="sales">การจำหน่าย</button><button data-view="herbs">จัดซื้อสมุนไพร</button><button data-view="social">ตอบแทนสังคม</button><input id="search" placeholder="ค้นหาชื่อสมุนไพร / หน่วยบริการ…"><button onclick="window.print()">พิมพ์ / บันทึก PDF</button></div>
-<section class="kpis">
-<div class="kpi" style="--tint:#d9f7e8"><div class="label">มูลค่าผลิตสำเร็จ ปี 2569</div><div class="value">฿12.96M</div><div class="sub">เพิ่มขึ้น 21.9% จากปี 2568</div><div class="symbol">⚗</div></div>
-<div class="kpi" style="--tint:#dce7ff"><div class="label">มูลค่าจำหน่าย ปี 2569</div><div class="value">฿11.58M</div><div class="sub">เพิ่มขึ้น 10.2% จากปี 2568</div><div class="symbol">↗</div></div>
-<div class="kpi" style="--tint:#fff0c9"><div class="label">รับซื้อสมุนไพร</div><div class="value">14,447 กก.</div><div class="sub">มูลค่ารวม ฿784,263.50</div><div class="symbol">♧</div></div>
-<div class="kpi" style="--tint:#f3e2ff"><div class="label">ยาสนับสนุนตอบแทนสังคม</div><div class="value">฿61,110</div><div class="sub">รวมตามรายการรายเดือน</div><div class="symbol">♡</div></div>
-</section>
-<div class="grid">
-<section class="panel span-6" data-section="production"><h2>มูลค่าผลิตยาสำเร็จรูปย้อนหลัง</h2><div class="desc">เปรียบเทียบ 5 ปีงบประมาณ · บาท</div><div class="chart" id="prodChart"></div></section>
-<section class="panel span-6" data-section="sales"><h2>มูลค่าจำหน่ายยาแผนไทยย้อนหลัง</h2><div class="desc">เปรียบเทียบ 5 ปีงบประมาณ · บาท</div><div class="chart" id="salesChart"></div></section>
-<section class="panel span-7" data-section="production"><h2>ยอดผลิตสะสมรายเดือน</h2><div class="desc">กราฟต้นฉบับแสดงยอดยกมาแยกต่างหาก และยอดสะสมตั้งแต่ตุลาคมถึงกันยายน</div><div class="chart" id="prodMonthly"></div><div class="callout">ข้อสังเกต: ในสไลด์มีตัวเลข 575,745.00 บาทโดยไม่มีป้ายกำกับชัดเจน ควรตรวจสอบความหมายก่อนนำไปตีความ</div></section>
-<section class="panel span-5" data-section="sales"><h2>ยอดจำหน่ายสะสมรายเดือน</h2><div class="desc">มูลค่าจำหน่ายสะสม ณ สิ้นเดือน · บาท</div><div class="chart" id="salesMonthly"></div></section>
-<section class="panel span-6" data-section="sales"><h2>จำหน่ายสนับสนุนเขตบริการสุขภาพที่ 3</h2><div class="desc">ยอดรวมตามแผนภูมิ: ฿11,581,701.60</div><div class="barlist" id="provinceBars"></div></section>
-<section class="panel span-6" data-section="sales"><h2>จำหน่ายในจังหวัดชัยนาท แยกหน่วยบริการ</h2><div class="desc">ยอดรวม 4 ไตรมาส · บาท</div><div class="tabs" id="districtTabs"></div><div class="chart" id="districtChart"></div></section>
-<section class="panel span-6" data-section="sales"><h2>จำหน่ายในอำเภอสรรคบุรี แยกช่องทาง</h2><div class="desc">รายไตรมาสตามแผนภูมิในต้นฉบับ</div><div class="chart" id="outletChart"></div></section>
-<section class="panel span-6" data-section="social"><h2>มูลค่ายาขอรับสนับสนุนเพื่อตอบแทนสังคม</h2><div class="desc">รายเดือน · บาท</div><div class="chart" id="socialChart"></div><div class="note">ยอดรวมจากรายการรายเดือนตรงกับยอดที่ระบุ 61,110 บาท ทั้งนี้ต้นฉบับมีชุดข้อมูลผิดพลาด “#REF!” ซึ่งไม่นำมาคำนวณ</div></section>
-<section class="panel span-12" data-section="herbs"><h2>การรับซื้อสมุนไพรจากกลุ่มผู้ปลูก</h2><div class="desc">สรุปตามแหล่งที่มาและรายละเอียดสมุนไพรที่ปรากฏในรายงาน</div><div class="kpis" style="margin-bottom:15px"><div class="kpi"><div class="label">ในจังหวัด</div><div class="value">12,586.2 กก.</div><div class="sub">฿610,962.50 · 77.9% ของมูลค่า</div></div><div class="kpi"><div class="label">นอกจังหวัด</div><div class="value">1,860.8 กก.</div><div class="sub">฿173,301.00 · 22.1% ของมูลค่า</div></div><div class="kpi"><div class="label">รวมปริมาณ</div><div class="value">14,447 กก.</div><div class="sub">ในจังหวัด + นอกจังหวัด</div></div><div class="kpi"><div class="label">รวมมูลค่า</div><div class="value">฿784,263.50</div><div class="sub">ปีงบประมาณ 2569</div></div></div><div class="tablewrap"><table id="herbTable"><thead><tr><th>ชนิดสมุนไพร</th><th>ในจังหวัด (กก.)</th><th>นอกจังหวัด (กก.)</th><th>รวม (กก.)</th><th>ในจังหวัด (บาท)</th><th>นอกจังหวัด (บาท)</th><th>รวม (บาท)</th></tr></thead><tbody></tbody></table></div><div class="note" style="margin-top:10px">หมายเหตุ: “ผิวมะกรูดแห้ง” มีรายการซ้ำในต้นฉบับ จึงคงแยกรายการที่สองเป็น “ผิวมะกรูดแห้ง (รายการ B)”</div></section>
-<section class="panel span-12"><h2>ประเด็นเพื่อการบริหารและติดตาม</h2><div class="grid" style="gap:12px"><div class="span-6 callout">⚙ <b>ความพร้อมการผลิต</b><br>ติดตามการซ่อมบำรุงเครื่องปรับอากาศ เครื่องจักร และการปรับปรุงสถานที่ ซึ่งต้นฉบับระบุว่าเป็นข้อจำกัดในการดำเนินงาน</div><div class="span-6 callout">✓ <b>คุณภาพข้อมูล</b><br>แก้ไขข้อมูล “#REF!” และตรวจสอบตัวเลข 575,745.00 บาทที่ไม่มีป้ายกำกับ</div><div class="span-6 callout">↗ <b>การกระจายยา</b><br>ใช้ข้อมูลรายจังหวัดและรายหน่วยบริการประกอบการวางแผนส่งมอบ โดยตรวจสอบยอดกับรายงานบัญชี</div><div class="span-6 callout">♧ <b>วัตถุดิบสมุนไพร</b><br>ใช้ข้อมูลปริมาณและมูลค่าตามชนิดและแหล่งที่มา เพื่อวางแผนจัดซื้อและติดตามความสม่ำเสมอของวัตถุดิบ</div></div></section>
-</div><footer>Dashboard สร้างจากข้อมูลใน PowerPoint ที่ผู้ใช้ให้มา · ใช้งานแบบออฟไลน์ได้ในไฟล์ HTML เดียว · ควรตรวจสอบยอดกับรายงานบัญชีฉบับจริงก่อนใช้อ้างอิงทางการ</footer>
-</main>
-<script>
-const D={"title": "Dashboard งานผลิตยาแผนไทย", "subtitle": "กลุ่มงานการแพทย์แผนไทยและแพทย์ทางเลือก โรงพยาบาลสรรคบุรี · ปีงบประมาณ 2569", "asof": "ข้อมูล ณ วันที่ 30 กันยายน 2569", "production_hist": {"ปีงบ 65": 6754467, "ปีงบ 66": 9106604, "ปีงบ 67": 8935500, "ปีงบ 68": 10634473, "ปีงบ 69": 12960863}, "sales_hist": {"ปีงบ 65": 7517236.12, "ปีงบ 66": 9628296, "ปีงบ 67": 8581886, "ปีงบ 68": 10506910.4, "ปีงบ 69": 11581701.6}, "production_months": {"ยอดยกมา": 932562.6, "ตุลาคม": 1912041.6, "พฤศจิกายน": 3380033.2, "ธันวาคม": 4802053, "มกราคม": 5997150.2, "กุมภาพันธ์": 7184533, "มีนาคม": 8289708, "เมษายน": 9312440.8, "พฤษภาคม": 10573902.8, "มิถุนายน": 11619776.4, "กรกฎาคม": 12269969, "สิงหาคม": 13317680.6, "กันยายน": 13893425.6}, "sales_months": {"ตุลาคม": 677604.2, "พฤศจิกายน": 2241021.2, "ธันวาคม": 2965422.4, "มกราคม": 4267417.2, "กุมภาพันธ์": 5277533, "มีนาคม": 6262909.2, "เมษายน": 7467740.2, "พฤษภาคม": 8753202.8, "มิถุนายน": 9291485.6, "กรกฎาคม": 9966369.6, "สิงหาคม": 11200066.6, "กันยายน": 11581701.6}, "provinces": {"กำแพงเพชร": 1961710.8, "พิจิตร": 1716120, "นครสวรรค์": 1959564, "ชัยนาท": 5260690.8, "อุทัยธานี": 683676}, "districts": {"สรรคบุรี": [1290400.2, 943472.2, 857189.2, 944295], "ชัยนาทนเรนทร": [90300, 41800, 15980, 21000], "วัดสิงห์": [18994, 14400, 13716, 26460], "หนองมะโมง": [64140, 72450, 69106, 45522], "สรรพยา": [27980, 93250, 156830, 0], "หันคา": [94200, 47500, 37950, 64000], "มโนรมย์": [66200, 56200, 62738, 0], "เนินขาม": [0, 26250, 8100, 32550], "สสจ.ชัยนาท": [6528.2, 4163, 21886, 7658]}, "outlets": {"คลินิกแพทย์แผนไทย": [735275, 558623.2, 532867.4, 394859], "ห้องจ่ายยาผู้ป่วยนอก": [167224, 122962, 113524, 128700], "14 รพ.สต.": [346389, 244560, 209039, 420216]}, "social": {"ตุลาคม": 18318.2, "พฤศจิกายน": 19447, "ธันวาคม": 3720, "มกราคม": 14087, "กุมภาพันธ์": 1172, "มีนาคม": 2067, "เมษายน": 0, "พฤษภาคม": 0, "มิถุนายน": 1698.8, "กรกฎาคม": 400, "สิงหาคม": 200, "กันยายน": 0}, "herbs": [{"name": "ฟ้าทะลายโจรสด", "kg_local": 5043.7, "kg_external": 305.8, "value_local": 226966.5, "value_external": 13761}, {"name": "ฟ้าทะลายโจรแห้ง", "kg_local": 0, "kg_external": 0, "value_local": 0, "value_external": 0}, {"name": "ไพลสด", "kg_local": 3174, "kg_external": 505, "value_local": 142830, "value_external": 22725}, {"name": "ไพลแห้ง", "kg_local": 0, "kg_external": 300, "value_local": 0, "value_external": 45000}, {"name": "ขมิ้นชันสด", "kg_local": 1322, "kg_external": 343, "value_local": 59490, "value_external": 15435}, {"name": "ขมิ้นชันแห้ง", "kg_local": 0, "kg_external": 200, "value_local": 0, "value_external": 30000}, {"name": "มะระขี้นกสด", "kg_local": 6, "kg_external": 0, "value_local": 210, "value_external": 0}, {"name": "มะระขี้นกแห้ง", "kg_local": 0, "kg_external": 0, "value_local": 0, "value_external": 0}, {"name": "ตะไคร้สด", "kg_local": 2573, "kg_external": 0, "value_local": 46314, "value_external": 0}, {"name": "ตะไคร้แห้ง", "kg_local": 113, "kg_external": 0, "value_local": 15820, "value_external": 0}, {"name": "ผิวมะกรูดแห้ง", "kg_local": 171.3, "kg_external": 0, "value_local": 13704, "value_external": 0}, {"name": "ใบมะขามแห้ง", "kg_local": 143.2, "kg_external": 0, "value_local": 9308, "value_external": 0}, {"name": "กระเจี๊ยบแดงสด", "kg_local": 8, "kg_external": 0, "value_local": 320, "value_external": 0}, {"name": "กระเจี๊ยบแดงแห้ง", "kg_local": 0, "kg_external": 90, "value_local": 0, "value_external": 18000}, {"name": "ใบมะขามแขกแห้ง", "kg_local": 0, "kg_external": 0, "value_local": 0, "value_external": 0}, {"name": "เพชรสังฆาตแห้ง", "kg_local": 0, "kg_external": 0, "value_local": 0, "value_external": 0}, {"name": "ใบกัญชาสด", "kg_local": 12, "kg_external": 0, "value_local": 6000, "value_external": 0}, {"name": "ใบกัญชาแห้ง", "kg_local": 20, "kg_external": 0, "value_local": 90000, "value_external": 0}, {"name": "ช่อดอกกัญชาแห้ง", "kg_local": 0, "kg_external": 0, "value_local": 0, "value_external": 0}, {"name": "กานพลูแห้ง", "kg_local": 0, "kg_external": 57, "value_local": 0, "value_external": 25080}, {"name": "ผิวมะกรูดแห้ง (รายการ B)", "kg_local": 0, "kg_external": 60, "value_local": 0, "value_external": 3300}]};
-const money=n=>'฿'+Number(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
-const short=n=>n>=1e6?(n/1e6).toFixed(2)+'M':n>=1e3?(n/1e3).toFixed(1)+'K':Number(n).toLocaleString('en-US');
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const colors=['#087f5b','#4c6fff','#f4b942','#8967d7','#f27878','#11a8a1','#d96cbd','#7395ae','#e08e45'];
-function barChart(el,labels,values,color='#087f5b',fmt=short){let w=680,h=Math.max(250,labels.length*31+45),left=labels.some(x=>x.length>14)?150:105,right=80,top=12,row=(h-top-28)/labels.length,max=Math.max(...values,1);let s=`<svg viewBox="0 0 ${w} ${h}" role="img">`;labels.forEach((l,i)=>{let y=top+i*row+row*.18,bh=Math.min(20,row*.58),bw=(w-left-right)*values[i]/max;s+=`<text x="${left-10}" y="${y+bh*.8}" font-size="11" text-anchor="end" fill="#68778d">${esc(l)}</text><rect x="${left}" y="${y}" width="${w-left-right}" height="${bh}" rx="6" fill="#edf1f7"/><rect x="${left}" y="${y}" width="${Math.max(0,bw)}" height="${bh}" rx="6" fill="${Array.isArray(color)?color[i%color.length]:color}"/><text x="${Math.min(w-right+5,left+bw+7)}" y="${y+bh*.8}" font-size="11" fill="#172b4d">${esc(fmt(values[i]))}</text>`});s+='</svg>';document.getElementById(el).innerHTML=s}
-function lineChart(el,labels,values,color){let w=680,h=275,L=48,R=20,T=20,B=55,max=Math.max(...values)*1.12,step=(w-L-R)/(values.length-1);let points=values.map((v,i)=>[L+i*step,T+(h-T-B)*(1-v/max)]);let path=points.map((p,i)=>(i?'L':'M')+p.join(',')).join(' ');let s=`<svg viewBox="0 0 ${w} ${h}">`;for(let i=0;i<4;i++){let y=T+(h-T-B)*i/3;s+=`<line x1="${L}" y1="${y}" x2="${w-R}" y2="${y}" stroke="#e7edf4"/><text x="${L-7}" y="${y+4}" text-anchor="end" font-size="10" fill="#8793a5">${short(max*(1-i/3))}</text>`}s+=`<path d="${path} L ${points[points.length-1][0]},${h-B} L ${points[0][0]},${h-B} Z" fill="${color}" opacity=".10"/><path d="${path}" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`;points.forEach((p,i)=>{s+=`<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${color}" stroke="white" stroke-width="2"/><text x="${p[0]}" y="${h-B+18}" text-anchor="middle" font-size="9" fill="#68778d">${esc(labels[i])}</text>`});s+='</svg>';document.getElementById(el).innerHTML=s}
-barChart('prodChart',Object.keys(D.production_hist),Object.values(D.production_hist),colors);
-barChart('salesChart',Object.keys(D.sales_hist),Object.values(D.sales_hist),colors);
-lineChart('prodMonthly',Object.keys(D.production_months),Object.values(D.production_months),'#087f5b');
-lineChart('salesMonthly',Object.keys(D.sales_months),Object.values(D.sales_months),'#4c6fff');
-barChart('provinceBars',Object.keys(D.provinces).map(x=>'จังหวัด'+x),Object.values(D.provinces),colors,money);
-barChart('socialChart',Object.keys(D.social),Object.values(D.social),'#8967d7',n=>Number(n).toLocaleString('en-US',{maximumFractionDigits:1}));
-const qlabels=['ไตรมาส 1','ไตรมาส 2','ไตรมาส 3','ไตรมาส 4'];
-let selectedQ=0;
-function drawDistrict(){let vals=Object.entries(D.districts).map(([name,arr])=>[name,arr[selectedQ]]);barChart('districtChart',vals.map(x=>x[0]),vals.map(x=>x[1]),colors,money)}
-document.getElementById('districtTabs').innerHTML=qlabels.map((q,i)=>`<button class="${i===0?'active':''}" data-q="${i}">${q}</button>`).join('');
-document.querySelectorAll('[data-q]').forEach(b=>b.onclick=()=>{selectedQ=+b.dataset.q;document.querySelectorAll('[data-q]').forEach(x=>x.classList.toggle('active',x===b));drawDistrict()});drawDistrict();
-const outletNames=Object.keys(D.outlets);let outLabels=[],outVals=[],outColors=[];
-outletNames.forEach((name,i)=>D.outlets[name].forEach((v,q)=>{outLabels.push(name+' · '+qlabels[q]);outVals.push(v);outColors.push(colors[i])}));
-barChart('outletChart',outLabels,outVals,outColors,money);
-const tbody=document.querySelector('#herbTable tbody');
-D.herbs.forEach(h=>{let kg=h.kg_local+h.kg_external,v=h.value_local+h.value_external;let tr=document.createElement('tr');tr.innerHTML=`<td>${esc(h.name)}</td><td class="num">${Number(h.kg_local).toLocaleString('en-US',{maximumFractionDigits:1})}</td><td class="num">${Number(h.kg_external).toLocaleString('en-US',{maximumFractionDigits:1})}</td><td class="num">${Number(kg).toLocaleString('en-US',{maximumFractionDigits:1})}</td><td class="num">${money(h.value_local)}</td><td class="num">${money(h.value_external)}</td><td class="num">${money(v)}</td>`;tbody.appendChild(tr)});
-document.getElementById('search').addEventListener('input',e=>{let q=e.target.value.toLowerCase();document.querySelectorAll('#herbTable tbody tr').forEach(r=>r.classList.toggle('hidden',!r.innerText.toLowerCase().includes(q)));document.querySelectorAll('[data-section]').forEach(s=>{if(q&&!s.innerText.toLowerCase().includes(q))s.classList.add('searchhide');else s.classList.remove('searchhide')})});
-document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x===b));let v=b.dataset.view;document.querySelectorAll('[data-section]').forEach(s=>s.classList.toggle('hidden',v!=='all'&&s.dataset.section!==v));if(v==='all')document.querySelectorAll('[data-section]').forEach(s=>s.classList.remove('hidden'))}));
-</script></body></html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dashboard งานผลิตยาแผนไทย ปีงบประมาณ 2569</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #667085;
+      --line: #d7e0ea;
+      --panel: #ffffff;
+      --soft: #f4f7fb;
+      --navy: #12355b;
+      --blue: #1a73e8;
+      --teal: #00a6a6;
+      --green: #1fbf75;
+      --yellow: #f7c948;
+      --orange: #ff8a3d;
+      --pink: #f45b93;
+      --violet: #6b5bd2;
+      --red: #e04f5f;
+      --shadow: 0 18px 45px rgba(18, 53, 91, 0.12);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Leelawadee UI", Tahoma, Arial, sans-serif;
+      color: var(--ink);
+      background:
+        linear-gradient(180deg, #f8fbff 0%, #eef4fa 48%, #f8fbff 100%);
+      letter-spacing: 0;
+    }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255,255,255,0.9);
+      border-bottom: 1px solid rgba(18,53,91,0.12);
+      backdrop-filter: blur(10px);
+    }
+    .topbar-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 10px 20px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 280px;
+      font-weight: 800;
+      color: var(--navy);
+    }
+    .brand-mark {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, var(--blue) 0 34%, var(--teal) 34% 64%, var(--yellow) 64% 100%);
+      box-shadow: 0 8px 18px rgba(26,115,232,0.24);
+      flex: 0 0 auto;
+    }
+    nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    nav a {
+      color: #2c3b54;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 7px 10px;
+      border-radius: 8px;
+    }
+    nav a:hover { background: #edf4ff; color: var(--blue); }
+    .shell {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 22px 20px 48px;
+    }
+    .hero {
+      min-height: 360px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: 22px;
+      align-items: stretch;
+      margin-bottom: 22px;
+    }
+    .hero-main {
+      background:
+        linear-gradient(135deg, rgba(18,53,91,0.98), rgba(24,96,137,0.98)),
+        repeating-linear-gradient(135deg, rgba(255,255,255,0.08) 0 2px, transparent 2px 12px);
+      border-radius: 8px;
+      color: white;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .hero-main::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0 0;
+      height: 9px;
+      background: linear-gradient(90deg, var(--yellow), var(--orange), var(--pink), var(--teal), var(--green));
+    }
+    .eyebrow {
+      font-size: 13px;
+      font-weight: 800;
+      color: #9fe7e5;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    h1 {
+      font-size: 36px;
+      line-height: 1.2;
+      margin: 0 0 14px;
+      letter-spacing: 0;
+    }
+    .hero-main p {
+      color: rgba(255,255,255,0.86);
+      font-size: 16px;
+      margin: 0;
+      max-width: 760px;
+    }
+    .hero-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .hero-pill {
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 8px;
+      padding: 12px;
+      background: rgba(255,255,255,0.08);
+    }
+    .hero-pill strong {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 2px;
+    }
+    .hero-pill span { color: rgba(255,255,255,0.72); font-size: 12px; }
+    .insight-panel {
+      background: var(--panel);
+      border: 1px solid rgba(18,53,91,0.12);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .insight-panel h2 {
+      margin: 0 0 12px;
+      color: var(--navy);
+      font-size: 22px;
+    }
+    .insight-list {
+      display: grid;
+      gap: 12px;
+    }
+    .insight-item {
+      border-left: 5px solid var(--blue);
+      padding: 9px 0 9px 12px;
+    }
+    .insight-item:nth-child(2) { border-color: var(--orange); }
+    .insight-item:nth-child(3) { border-color: var(--green); }
+    .insight-item:nth-child(4) { border-color: var(--pink); }
+    .insight-item strong { display: block; margin-bottom: 2px; }
+    .insight-item span { color: var(--muted); font-size: 13px; }
+    .section {
+      margin: 22px 0;
+    }
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 18px;
+      margin: 0 0 14px;
+    }
+    .section-title h2 {
+      font-size: 24px;
+      color: var(--navy);
+      margin: 0;
+    }
+    .section-title p {
+      color: var(--muted);
+      margin: 0;
+      font-size: 13px;
+      text-align: right;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .kpi-card {
+      background: var(--panel);
+      border: 1px solid rgba(18,53,91,0.12);
+      border-radius: 8px;
+      padding: 16px;
+      min-height: 152px;
+      box-shadow: 0 10px 26px rgba(18, 53, 91, 0.08);
+      position: relative;
+      overflow: hidden;
+    }
+    .kpi-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 5px;
+      background: var(--accent, var(--blue));
+    }
+    .kpi-label {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .kpi-value {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.08;
+      overflow-wrap: anywhere;
+    }
+    .kpi-sub {
+      color: #4c5b72;
+      font-size: 12px;
+      margin-top: 9px;
+      line-height: 1.35;
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid rgba(18,53,91,0.12);
+      border-radius: 8px;
+      box-shadow: 0 10px 26px rgba(18, 53, 91, 0.08);
+      padding: 16px;
+      min-width: 0;
+    }
+    .panel h3 {
+      margin: 0 0 4px;
+      font-size: 18px;
+      color: var(--navy);
+    }
+    .panel .sub {
+      color: var(--muted);
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+    .chart {
+      width: 100%;
+      min-height: 330px;
+    }
+    .chart svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .donut-wrap {
+      display: grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap: 22px;
+      align-items: center;
+      min-height: 340px;
+    }
+    .donut {
+      width: 270px;
+      height: 270px;
+      border-radius: 50%;
+      position: relative;
+      box-shadow: inset 0 0 0 1px rgba(18,53,91,0.06), 0 16px 34px rgba(18,53,91,0.13);
+    }
+    .donut::after {
+      content: "";
+      position: absolute;
+      inset: 62px;
+      background: white;
+      border-radius: 50%;
+      border: 1px solid rgba(18,53,91,0.08);
+    }
+    .donut-center {
+      position: absolute;
+      inset: 88px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      z-index: 2;
+      font-weight: 900;
+      color: var(--navy);
+      font-size: 18px;
+      line-height: 1.2;
+    }
+    .legend {
+      display: grid;
+      gap: 9px;
+    }
+    .legend-row {
+      display: grid;
+      grid-template-columns: 14px minmax(0, 1fr) auto auto;
+      gap: 9px;
+      align-items: center;
+      font-size: 13px;
+    }
+    .swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 3px;
+    }
+    .legend-row strong { color: var(--navy); white-space: nowrap; }
+    .stack-list { display: grid; gap: 10px; }
+    .stack-row {
+      display: grid;
+      grid-template-columns: 128px minmax(0, 1fr) 110px;
+      gap: 10px;
+      align-items: center;
+      font-size: 12px;
+    }
+    .stack-label { font-weight: 800; color: #26364d; }
+    .stack-bar {
+      height: 24px;
+      display: flex;
+      overflow: hidden;
+      background: #edf2f7;
+      border: 1px solid rgba(18,53,91,0.08);
+      border-radius: 6px;
+    }
+    .stack-seg { height: 100%; min-width: 1px; }
+    .stack-total { text-align: right; color: var(--navy); font-weight: 800; }
+    .bar-list { display: grid; gap: 10px; }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 150px minmax(0, 1fr) 96px;
+      gap: 10px;
+      align-items: center;
+      font-size: 12px;
+    }
+    .bar-track {
+      height: 22px;
+      background: #edf2f7;
+      border: 1px solid rgba(18,53,91,0.08);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal), var(--green));
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 8px;
+      vertical-align: top;
+    }
+    th {
+      color: var(--navy);
+      background: #edf4ff;
+      text-align: left;
+      position: sticky;
+      top: 49px;
+      z-index: 5;
+    }
+    td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .table-scroll {
+      max-height: 470px;
+      overflow: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    .callout {
+      border-left: 5px solid var(--orange);
+      background: #fff6ed;
+      padding: 12px 14px;
+      border-radius: 0 8px 8px 0;
+      color: #5a3b17;
+      font-size: 13px;
+      margin-top: 12px;
+    }
+    .decision-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .decision-card {
+      background: white;
+      border: 1px solid rgba(18,53,91,0.12);
+      border-top: 5px solid var(--accent, var(--blue));
+      border-radius: 8px;
+      padding: 14px;
+      min-height: 170px;
+      box-shadow: 0 10px 26px rgba(18, 53, 91, 0.07);
+    }
+    .decision-card strong {
+      display: block;
+      color: var(--navy);
+      margin-bottom: 8px;
+      font-size: 15px;
+    }
+    .decision-card span {
+      color: #4d5c72;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .footer-note {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 20px;
+      border-top: 1px solid var(--line);
+      padding-top: 14px;
+    }
+    .axis text, .chart-label {
+      fill: #526075;
+      font-family: "Leelawadee UI", Tahoma, Arial, sans-serif;
+      font-size: 12px;
+    }
+    .chart-title {
+      fill: #12355b;
+      font-weight: 800;
+      font-size: 13px;
+    }
+    @media (max-width: 1180px) {
+      .kpi-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .decision-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 820px) {
+      .topbar-inner { align-items: flex-start; flex-direction: column; }
+      nav { justify-content: flex-start; }
+      h1 { font-size: 28px; }
+      .hero-strip { grid-template-columns: 1fr; }
+      .kpi-grid, .grid-2, .grid-3, .decision-grid { grid-template-columns: 1fr; }
+      .donut-wrap { grid-template-columns: 1fr; justify-items: center; }
+      .section-title { align-items: flex-start; flex-direction: column; }
+      .section-title p { text-align: left; }
+      .stack-row, .bar-row { grid-template-columns: 1fr; }
+      .stack-total { text-align: left; }
+      th { position: static; }
+    }
+    @media print {
+      .topbar { position: static; }
+      body { background: white; }
+      .panel, .kpi-card, .hero-main, .insight-panel, .decision-card { box-shadow: none; }
+      .section { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><span class="brand-mark"></span><span>Thai Traditional Medicine Dashboard</span></div>
+      <nav aria-label="Dashboard sections">
+        <a href="#overview">ภาพรวม</a>
+        <a href="#performance">ผลิต-จำหน่าย</a>
+        <a href="#coverage">พื้นที่จำหน่าย</a>
+        <a href="#social">สังคมและวัตถุดิบ</a>
+        <a href="#decisions">ประเด็นประชุม</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section id="overview" class="hero">
+      <div class="hero-main">
+        <div>
+          <div class="eyebrow">ข้อมูล ณ วันที่ 30 กันยายน 2569</div>
+          <h1>งานผลิตยาแผนไทย<br>กลุ่มงานการแพทย์แผนไทยและแพทย์ทางเลือก โรงพยาบาลสรรคบุรี</h1>
+          <p>สรุปผลผลิต การจำหน่าย การสนับสนุนสังคม และการรับซื้อสมุนไพรจากกลุ่มผู้ปลูก สำหรับใช้ประกอบการประชุมผู้บริหาร</p>
+        </div>
+        <div class="hero-strip">
+          <div class="hero-pill"><strong>12.96 ล้านบาท</strong><span>ผลิตยาสำเร็จรูปปี 2569</span></div>
+          <div class="hero-pill"><strong>11.58 ล้านบาท</strong><span>จำหน่ายยาแผนไทยปี 2569</span></div>
+          <div class="hero-pill"><strong>14,447 กก.</strong><span>รับซื้อสมุนไพรจากกลุ่มผู้ปลูก</span></div>
+        </div>
+      </div>
+      <aside class="insight-panel">
+        <div>
+          <h2>Executive Signals</h2>
+          <div class="insight-list">
+            <div class="insight-item"><strong>ผลิตเติบโตสูงสุดในรอบข้อมูล 5 ปี</strong><span>ปี 2569 เพิ่ม 21.88% จากปี 2568 และเพิ่ม 91.89% จากปี 2565</span></div>
+            <div class="insight-item"><strong>เดือนกันยายนชะลอชัด</strong><span>ผลิตเพิ่ม 575,745 บาท และจำหน่ายเพิ่ม 381,635 บาท ต่ำสุดของปี</span></div>
+            <div class="insight-item"><strong>ฐานรายได้ยังพึ่งพื้นที่หลัก</strong><span>ชัยนาทคิดเป็น 45.42% ของยอดเขต 3 และสรรคบุรีคิดเป็น 75.52% ของยอดในชัยนาท</span></div>
+            <div class="insight-item"><strong>ควรกระทบยอดข้อมูลก่อนใช้ทางการ</strong><span>พบส่วนต่าง 60 บาทในกราฟจังหวัด และ 82,517 บาทระหว่างยอดจังหวัดกับยอดแยกหน่วยบริการ</span></div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="kpi-grid" aria-label="KPI summary">
+      <article class="kpi-card" style="--accent: var(--blue)"><div class="kpi-label">มูลค่าผลิตเสร็จ</div><div class="kpi-value">12,960,863</div><div class="kpi-sub">บาท | +21.88% จากปีงบ 2568</div></article>
+      <article class="kpi-card" style="--accent: var(--teal)"><div class="kpi-label">ผลิตสะสมรวมยอดยกมา</div><div class="kpi-value">13,893,425.60</div><div class="kpi-sub">บาท | ยอดยกมา 932,562.60 บาท</div></article>
+      <article class="kpi-card" style="--accent: var(--green)"><div class="kpi-label">มูลค่าจำหน่าย</div><div class="kpi-value">11,581,701.60</div><div class="kpi-sub">บาท | +10.23% จากปีงบ 2568</div></article>
+      <article class="kpi-card" style="--accent: var(--orange)"><div class="kpi-label">ส่วนต่างผลิต-ขาย</div><div class="kpi-value">1,379,161.40</div><div class="kpi-sub">บาท | อัตราขายต่อผลิตใหม่ 89.36%</div></article>
+      <article class="kpi-card" style="--accent: var(--pink)"><div class="kpi-label">สนับสนุนสังคม</div><div class="kpi-value">61,110</div><div class="kpi-sub">บาท | ตำรับยากัญชาปรุงผสม 0 บาท</div></article>
+      <article class="kpi-card" style="--accent: var(--violet)"><div class="kpi-label">ซื้อสมุนไพร</div><div class="kpi-value">784,263.50</div><div class="kpi-sub">บาท | 14,447.00 กก. | ในจังหวัด 87.12%</div></article>
+    </section>
+
+    <section id="performance" class="section">
+      <div class="section-title">
+        <h2>ผลิตและจำหน่าย</h2>
+        <p>เทียบย้อนหลังและดูจังหวะสะสมรายเดือนของปีงบประมาณ 2569</p>
+      </div>
+      <div class="grid-2">
+        <article class="panel">
+          <h3>มูลค่าย้อนหลัง 5 ปี</h3>
+          <div class="sub">หน่วย: ล้านบาท</div>
+          <div id="historyChart" class="chart"></div>
+        </article>
+        <article class="panel">
+          <h3>ยอดสะสมรายเดือน</h3>
+          <div class="sub">ผลิตสะสมรวมยอดยกมา เทียบกับจำหน่ายสะสม</div>
+          <div id="cumulativeChart" class="chart"></div>
+        </article>
+      </div>
+      <div class="grid-2" style="margin-top:16px">
+        <article class="panel">
+          <h3>มูลค่าเพิ่มรายเดือน</h3>
+          <div class="sub">ช่วยเห็นจุดชะลอช่วงปลายปีงบประมาณ</div>
+          <div id="monthlyChart" class="chart"></div>
+        </article>
+        <article class="panel">
+          <h3>ตารางสะสมรายเดือน</h3>
+          <div class="sub">ผลิต: นับรวมยอดยกมา 932,562.60 บาท</div>
+          <div id="monthlyTable" class="table-scroll"></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="coverage" class="section">
+      <div class="section-title">
+        <h2>พื้นที่จำหน่ายและช่องทางบริการ</h2>
+        <p>เขตบริการสุขภาพที่ 3 จังหวัดชัยนาท และอำเภอสรรคบุรี</p>
+      </div>
+      <div class="grid-2">
+        <article class="panel">
+          <h3>สัดส่วนยอดจำหน่ายตามจังหวัด</h3>
+          <div class="sub">คำนวณจากผลรวมป้ายกราฟ 11,581,761.60 บาท</div>
+          <div class="donut-wrap">
+            <div class="donut" id="provinceDonut"><div class="donut-center">เขต 3<br>11.58M</div></div>
+            <div id="provinceLegend" class="legend"></div>
+          </div>
+          <div class="callout">ยอดรวมบนสไลด์ระบุ 11,581,701.60 บาท ต่ำกว่าผลรวมป้ายกราฟ 60 บาท โดย workbook มีหมายเหตุเรื่องยอดทำลายเดือนมิถุนายน 60 บาท</div>
+        </article>
+        <article class="panel">
+          <h3>จังหวัดชัยนาท แยกหน่วยบริการ</h3>
+          <div class="sub">ยอดรวมจากกราฟ 5,343,207.80 บาท</div>
+          <div id="chainatStack" class="stack-list"></div>
+        </article>
+      </div>
+      <div class="grid-2" style="margin-top:16px">
+        <article class="panel">
+          <h3>อำเภอสรรคบุรี แยกช่องทาง</h3>
+          <div class="sub">ยอดรวมจากกราฟ 3,974,238.60 บาท</div>
+          <div id="districtStack" class="stack-list"></div>
+        </article>
+        <article class="panel">
+          <h3>ตารางยอดขายพื้นที่</h3>
+          <div class="sub">รายละเอียดจังหวัด หน่วยบริการ และช่องทางหลัก</div>
+          <div id="coverageTables" class="table-scroll"></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="social" class="section">
+      <div class="section-title">
+        <h2>สังคมและวัตถุดิบสมุนไพร</h2>
+        <p>มูลค่ายาสนับสนุนและการรับซื้อจากกลุ่มผู้ปลูก</p>
+      </div>
+      <div class="grid-2">
+        <article class="panel">
+          <h3>ยาขอรับสนับสนุนเพื่อตอบแทนสังคม</h3>
+          <div class="sub">รวม 61,110 บาท | ตำรับยาที่มีกัญชาปรุงผสม 0 บาท</div>
+          <div id="csrChart" class="chart"></div>
+        </article>
+        <article class="panel">
+          <h3>รับซื้อสมุนไพร: ในจังหวัด vs นอกจังหวัด</h3>
+          <div class="sub">ปริมาณและมูลค่ารวมทั้งปี</div>
+          <div id="sourceBars" class="bar-list"></div>
+          <div class="callout">นอกจังหวัดมีสัดส่วนปริมาณ 12.88% แต่คิดเป็นมูลค่า 22.10% เพราะเป็นรายการเฉลี่ยราคาสูงกว่า เช่น สมุนไพรแห้งและกานพลูแห้ง</div>
+        </article>
+      </div>
+      <div class="grid-2" style="margin-top:16px">
+        <article class="panel">
+          <h3>รายการสมุนไพรมูลค่าสูงสุด</h3>
+          <div class="sub">เรียงตามมูลค่ารวม</div>
+          <div id="herbValueBars" class="bar-list"></div>
+        </article>
+        <article class="panel">
+          <h3>รายการสมุนไพรปริมาณสูงสุด</h3>
+          <div class="sub">เรียงตามปริมาณรวม</div>
+          <div id="herbQtyBars" class="bar-list"></div>
+        </article>
+      </div>
+      <article class="panel" style="margin-top:16px">
+        <h3>ตารางรับซื้อสมุนไพรทั้งหมด</h3>
+        <div class="sub">แยกปริมาณและมูลค่าตามแหล่งรับซื้อ</div>
+        <div id="herbTable" class="table-scroll"></div>
+      </article>
+    </section>
+
+    <section id="decisions" class="section">
+      <div class="section-title">
+        <h2>ประเด็นสำหรับที่ประชุม</h2>
+        <p>ประเด็นที่ควรติดตามหรือตัดสินใจจากข้อมูลเดือนกันยายน 2569</p>
+      </div>
+      <div class="decision-grid">
+        <article class="decision-card" style="--accent: var(--blue)"><strong>ปิดงานซ่อมบำรุง</strong><span>เดือนกันยายนผลิตต่ำสุดของปี และมีหมายเหตุเรื่องเครื่องปรับอากาศ เครื่องจักร และสถานที่ ควรกำหนดแผนฟื้นกำลังผลิตหลังซ่อมเสร็จ</span></article>
+        <article class="decision-card" style="--accent: var(--orange)"><strong>บริหารคงคลัง</strong><span>ผลิตใหม่สูงกว่าจำหน่าย 1.38 ล้านบาท ควรติดตามอายุสินค้า แผนระบาย และจุดสั่งผลิตในไตรมาสถัดไป</span></article>
+        <article class="decision-card" style="--accent: var(--green)"><strong>ขยายฐานจำหน่าย</strong><span>ยอดในชัยนาทและสรรคบุรีมีสัดส่วนสูง ควรพัฒนาแผนกระตุ้นพื้นที่ที่ยังมีสัดส่วนต่ำและพื้นที่ที่ไตรมาส 4 เป็นศูนย์</span></article>
+        <article class="decision-card" style="--accent: var(--pink)"><strong>วัตถุดิบราคาสูง</strong><span>วัตถุดิบจากนอกจังหวัดมีต้นทุนเฉลี่ยสูงกว่าในจังหวัด ควรพิจารณาแผนจัดซื้อเชิงสัญญาและการพัฒนาผู้ปลูกในพื้นที่</span></article>
+        <article class="decision-card" style="--accent: var(--violet)"><strong>กระทบยอดข้อมูล</strong><span>ควรตรวจยอดรวมกราฟจังหวัด กราฟหน่วยบริการ และรายงานบัญชีก่อนใช้เป็นตัวเลขในเอกสารทางการ</span></article>
+      </div>
+      <p class="footer-note">แหล่งข้อมูล: ไฟล์ PowerPoint รายงานประจำเดือนงานผลิตยาแผนไทย69[ใหม่](1).pptx และข้อมูลกราฟ/embedded workbook ภายในไฟล์ ข้อมูล ณ วันที่ 30 กันยายน 2569</p>
+    </section>
+  </main>
+
+  <script>
+    const colors = {
+      blue: '#1a73e8',
+      teal: '#00a6a6',
+      green: '#1fbf75',
+      yellow: '#f7c948',
+      orange: '#ff8a3d',
+      pink: '#f45b93',
+      violet: '#6b5bd2',
+      red: '#e04f5f',
+      navy: '#12355b',
+      slate: '#667085'
+    };
+
+    const data = {
+      history: {
+        labels: ['ปีงบ 65','ปีงบ 66','ปีงบ 67','ปีงบ 68','ปีงบ 69'],
+        production: [6754467, 9106604, 8935500, 10634473, 12960863],
+        sales: [7517236.12, 9628296, 8581886, 10506910.40, 11581701.60]
+      },
+      monthly: {
+        labels: ['ต.ค.','พ.ย.','ธ.ค.','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.'],
+        fullLabels: ['ตุลาคม','พฤศจิกายน','ธันวาคม','มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน'],
+        productionCumulative: [1912041.60,3380033.20,4802053.00,5997150.20,7184533.00,8289708.00,9312440.80,10573902.80,11619776.40,12269969.00,13317680.60,13893425.60],
+        productionIncrement: [979479.00,1467991.60,1422019.80,1195097.20,1187382.80,1105175.00,1022732.80,1261462.00,1045873.60,650192.60,1047711.60,575745.00],
+        salesCumulative: [677604.20,2241021.20,2965422.40,4267417.20,5277533.00,6262909.20,7467740.20,8753202.80,9291485.60,9966369.60,11200066.60,11581701.60],
+        salesIncrement: [677604.20,1563417.00,724401.20,1301994.80,1010115.80,985376.20,1204831.00,1285462.60,538282.80,674884.00,1233697.00,381635.00]
+      },
+      province: [
+        {name:'ชัยนาท', value:5260690.80},
+        {name:'กำแพงเพชร', value:1961710.80},
+        {name:'นครสวรรค์', value:1959564.00},
+        {name:'พิจิตร', value:1716120.00},
+        {name:'อุทัยธานี', value:683676.00}
+      ],
+      chainat: [
+        {name:'สรรคบุรี', q:[1290400.20,943472.20,857189.20,944295.00]},
+        {name:'สรรพยา', q:[27980.00,93250.00,156830.00,0.00]},
+        {name:'หนองมะโมง', q:[64140.00,72450.00,69106.00,45522.00]},
+        {name:'หันคา', q:[94200.00,47500.00,37950.00,64000.00]},
+        {name:'มโนรมย์', q:[66200.00,56200.00,62738.00,0.00]},
+        {name:'ชัยนาทนเรนทร', q:[90300.00,41800.00,15980.00,21000.00]},
+        {name:'วัดสิงห์', q:[18994.00,14400.00,13716.00,26460.00]},
+        {name:'เนินขาม', q:[0.00,26250.00,8100.00,32550.00]},
+        {name:'สสจ.ชัยนาท', q:[6528.20,4163.00,21886.00,7658.00]}
+      ],
+      district: [
+        {name:'คลินิกแพทย์แผนไทย', q:[735275.00,558623.20,532867.40,394859.00]},
+        {name:'14 รพ.สต.', q:[346389.00,244560.00,209039.00,420216.00]},
+        {name:'ห้องจ่ายยาผู้ป่วยนอก', q:[167224.00,122962.00,113524.00,128700.00]}
+      ],
+      csr: [
+        {name:'ต.ค.', value:18318.20}, {name:'พ.ย.', value:19447.00}, {name:'ธ.ค.', value:3720.00},
+        {name:'ม.ค.', value:14087.00}, {name:'ก.พ.', value:1172.00}, {name:'มี.ค.', value:2067.00},
+        {name:'เม.ย.', value:0.00}, {name:'พ.ค.', value:0.00}, {name:'มิ.ย.', value:1698.80},
+        {name:'ก.ค.', value:400.00}, {name:'ส.ค.', value:200.00}, {name:'ก.ย.', value:0.00}
+      ],
+      herbs: [
+        {name:'ฟ้าทะลายโจรสด', qIn:5043.70, qOut:305.80, vIn:226966.50, vOut:13761.00},
+        {name:'ฟ้าทะลายโจรแห้ง', qIn:0, qOut:0, vIn:0, vOut:0},
+        {name:'ไพลสด', qIn:3174.00, qOut:505.00, vIn:142830.00, vOut:22725.00},
+        {name:'ไพลแห้ง', qIn:0, qOut:300.00, vIn:0, vOut:45000.00},
+        {name:'ขมิ้นชันสด', qIn:1322.00, qOut:343.00, vIn:59490.00, vOut:15435.00},
+        {name:'ขมิ้นชันแห้ง', qIn:0, qOut:200.00, vIn:0, vOut:30000.00},
+        {name:'มะระขี้นกสด', qIn:6.00, qOut:0, vIn:210.00, vOut:0},
+        {name:'มะระขี้นกแห้ง', qIn:0, qOut:0, vIn:0, vOut:0},
+        {name:'ตะไคร้สด', qIn:2573.00, qOut:0, vIn:46314.00, vOut:0},
+        {name:'ตะไคร้แห้ง', qIn:113.00, qOut:0, vIn:15820.00, vOut:0},
+        {name:'ผิวมะกรูดแห้ง', qIn:171.30, qOut:0, vIn:13704.00, vOut:0},
+        {name:'ใบมะขามแห้ง', qIn:143.20, qOut:0, vIn:9308.00, vOut:0},
+        {name:'กระเจี๊ยบแดงสด', qIn:8.00, qOut:0, vIn:320.00, vOut:0},
+        {name:'กระเจี๊ยบแดงแห้ง', qIn:0, qOut:90.00, vIn:0, vOut:18000.00},
+        {name:'ใบมะขามแขกแห้ง', qIn:0, qOut:0, vIn:0, vOut:0},
+        {name:'เพชรสังฆาตแห้ง', qIn:0, qOut:0, vIn:0, vOut:0},
+        {name:'ใบกัญชาสด', qIn:12.00, qOut:0, vIn:6000.00, vOut:0},
+        {name:'ใบกัญชาแห้ง', qIn:20.00, qOut:0, vIn:90000.00, vOut:0},
+        {name:'ช่อดอกกัญชาแห้ง', qIn:0, qOut:0, vIn:0, vOut:0},
+        {name:'กานพลูแห้ง', qIn:0, qOut:57.00, vIn:0, vOut:25080.00},
+        {name:'ผิวมะกรูดแห้งB', qIn:0, qOut:60.00, vIn:0, vOut:3300.00}
+      ]
+    };
+
+    const fmt = (n, digits = 2) => n.toLocaleString('th-TH', {minimumFractionDigits: digits, maximumFractionDigits: digits});
+    const fmt0 = n => n.toLocaleString('th-TH', {maximumFractionDigits: 0});
+    const sum = arr => arr.reduce((a, b) => a + b, 0);
+    const totalQ = row => sum(row.q);
+    const million = n => n / 1000000;
+    const escapeHtml = text => String(text).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+    function groupedBarChart(el, labels, series, options = {}) {
+      const width = 900, height = 360;
+      const pad = {top: 26, right: 18, bottom: 58, left: 64};
+      const plotW = width - pad.left - pad.right;
+      const plotH = height - pad.top - pad.bottom;
+      const values = series.flatMap(s => s.values);
+      const max = Math.max(...values) * 1.12 || 1;
+      const ticks = 5;
+      const groupW = plotW / labels.length;
+      const barGap = 5;
+      const barW = Math.max(10, (groupW - 20 - barGap * (series.length - 1)) / series.length);
+      const y = v => pad.top + plotH - (v / max) * plotH;
+      let svg = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHtml(options.title || '')}">`;
+      svg += `<rect x="0" y="0" width="${width}" height="${height}" fill="white"/>`;
+      for (let i = 0; i <= ticks; i++) {
+        const val = (max / ticks) * i;
+        const yy = y(val);
+        svg += `<line x1="${pad.left}" y1="${yy}" x2="${width - pad.right}" y2="${yy}" stroke="#e2e8f0" stroke-width="1"/>`;
+        svg += `<text class="chart-label" x="${pad.left - 8}" y="${yy + 4}" text-anchor="end">${fmt(million(val), 1)}</text>`;
+      }
+      labels.forEach((label, i) => {
+        const baseX = pad.left + i * groupW + 10;
+        series.forEach((s, j) => {
+          const h = plotH - (y(s.values[i]) - pad.top);
+          const x = baseX + j * (barW + barGap);
+          svg += `<rect x="${x}" y="${y(s.values[i])}" width="${barW}" height="${h}" rx="4" fill="${s.color}"/>`;
+        });
+        svg += `<text class="chart-label" x="${pad.left + i * groupW + groupW / 2}" y="${height - 28}" text-anchor="middle">${escapeHtml(label)}</text>`;
+      });
+      const legendX = pad.left;
+      series.forEach((s, i) => {
+        const x = legendX + i * 180;
+        svg += `<rect x="${x}" y="${height - 18}" width="12" height="12" rx="3" fill="${s.color}"/>`;
+        svg += `<text class="chart-label" x="${x + 18}" y="${height - 8}">${escapeHtml(s.name)}</text>`;
+      });
+      svg += `<text class="chart-title" x="${pad.left}" y="16">${escapeHtml(options.yLabel || 'ล้านบาท')}</text>`;
+      svg += `</svg>`;
+      document.getElementById(el).innerHTML = svg;
+    }
+
+    function lineChart(el, labels, series, options = {}) {
+      const width = 900, height = 360;
+      const pad = {top: 24, right: 28, bottom: 62, left: 66};
+      const plotW = width - pad.left - pad.right;
+      const plotH = height - pad.top - pad.bottom;
+      const max = Math.max(...series.flatMap(s => s.values)) * 1.1 || 1;
+      const y = v => pad.top + plotH - (v / max) * plotH;
+      const x = i => pad.left + (plotW / (labels.length - 1)) * i;
+      let svg = `<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHtml(options.title || '')}">`;
+      svg += `<rect x="0" y="0" width="${width}" height="${height}" fill="white"/>`;
+      for (let i = 0; i <= 5; i++) {
+        const val = max / 5 * i;
+        const yy = y(val);
+        svg += `<line x1="${pad.left}" y1="${yy}" x2="${width - pad.right}" y2="${yy}" stroke="#e2e8f0"/>`;
+        svg += `<text class="chart-label" x="${pad.left - 8}" y="${yy + 4}" text-anchor="end">${fmt(million(val), 1)}</text>`;
+      }
+      labels.forEach((label, i) => {
+        svg += `<text class="chart-label" x="${x(i)}" y="${height - 32}" text-anchor="middle">${escapeHtml(label)}</text>`;
+      });
+      series.forEach(s => {
+        const points = s.values.map((v, i) => `${x(i)},${y(v)}`).join(' ');
+        svg += `<polyline points="${points}" fill="none" stroke="${s.color}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`;
+        s.values.forEach((v, i) => svg += `<circle cx="${x(i)}" cy="${y(v)}" r="4.5" fill="white" stroke="${s.color}" stroke-width="3"><title>${escapeHtml(labels[i])}: ${fmt(v)}</title></circle>`);
+      });
+      series.forEach((s, i) => {
+        const lx = pad.left + i * 220;
+        svg += `<line x1="${lx}" y1="${height - 14}" x2="${lx + 22}" y2="${height - 14}" stroke="${s.color}" stroke-width="4" stroke-linecap="round"/>`;
+        svg += `<text class="chart-label" x="${lx + 30}" y="${height - 10}">${escapeHtml(s.name)}</text>`;
+      });
+      svg += `<text class="chart-title" x="${pad.left}" y="16">${escapeHtml(options.yLabel || 'ล้านบาท')}</text>`;
+      svg += `</svg>`;
+      document.getElementById(el).innerHTML = svg;
+    }
+
+    function renderDonut() {
+      const palette = [colors.pink, colors.teal, colors.blue, colors.yellow, colors.violet];
+      const total = sum(data.province.map(d => d.value));
+      let start = 0;
+      const parts = data.province.map((d, i) => {
+        const pct = d.value / total * 100;
+        const segment = `${palette[i]} ${start}% ${start + pct}%`;
+        start += pct;
+        return segment;
+      });
+      document.getElementById('provinceDonut').style.background = `conic-gradient(${parts.join(',')})`;
+      document.getElementById('provinceLegend').innerHTML = data.province.map((d, i) => `
+        <div class="legend-row">
+          <span class="swatch" style="background:${palette[i]}"></span>
+          <span>${escapeHtml(d.name)}</span>
+          <strong>${fmt(d.value)}</strong>
+          <span>${fmt(d.value / total * 100)}%</span>
+        </div>
+      `).join('');
+    }
+
+    function renderStack(el, rows, maxTotal = null) {
+      const palette = [colors.blue, colors.red, colors.green, colors.violet];
+      const largest = maxTotal || Math.max(...rows.map(totalQ));
+      document.getElementById(el).innerHTML = rows.map(row => {
+        const t = totalQ(row);
+        const barWidth = Math.max(2, t / largest * 100);
+        const segs = row.q.map((v, i) => {
+          const width = t ? v / t * 100 : 0;
+          return `<span class="stack-seg" style="width:${width}%;background:${palette[i]}" title="ไตรมาส ${i + 1}: ${fmt(v)}"></span>`;
+        }).join('');
+        return `<div class="stack-row">
+          <div class="stack-label">${escapeHtml(row.name)}</div>
+          <div class="stack-bar" style="width:${barWidth}%">${segs}</div>
+          <div class="stack-total">${fmt(t)}</div>
+        </div>`;
+      }).join('') + `<div class="legend" style="grid-template-columns:repeat(4,minmax(0,1fr));margin-top:8px">
+        ${['ไตรมาส 1','ไตรมาส 2','ไตรมาส 3','ไตรมาส 4'].map((q,i)=>`<div class="legend-row" style="grid-template-columns:14px minmax(0,1fr)"><span class="swatch" style="background:${palette[i]}"></span><span>${q}</span></div>`).join('')}
+      </div>`;
+    }
+
+    function renderBarList(el, rows, label, value, color = colors.teal, unit = 'บาท') {
+      const max = Math.max(...rows.map(value)) || 1;
+      document.getElementById(el).innerHTML = rows.map(row => {
+        const v = value(row);
+        return `<div class="bar-row">
+          <div class="stack-label">${escapeHtml(label(row))}</div>
+          <div class="bar-track"><div class="bar-fill" style="width:${v / max * 100}%;background:${color}"></div></div>
+          <div class="stack-total">${fmt(v)} ${unit}</div>
+        </div>`;
+      }).join('');
+    }
+
+    function renderTables() {
+      const rows = data.monthly.fullLabels.map((m, i) => `
+        <tr>
+          <td>${m}</td>
+          <td class="num">${fmt(data.monthly.productionCumulative[i])}</td>
+          <td class="num">${fmt(data.monthly.productionIncrement[i])}</td>
+          <td class="num">${fmt(data.monthly.salesCumulative[i])}</td>
+          <td class="num">${fmt(data.monthly.salesIncrement[i])}</td>
+        </tr>
+      `).join('');
+      document.getElementById('monthlyTable').innerHTML = `
+        <table><thead><tr><th>เดือน</th><th class="num">ผลิตสะสม</th><th class="num">ผลิตเพิ่ม</th><th class="num">จำหน่ายสะสม</th><th class="num">จำหน่ายเพิ่ม</th></tr></thead><tbody>${rows}</tbody></table>`;
+
+      const provinceTotal = sum(data.province.map(d => d.value));
+      const provinceRows = data.province.map(d => `<tr><td>${escapeHtml(d.name)}</td><td class="num">${fmt(d.value)}</td><td class="num">${fmt(d.value / provinceTotal * 100)}%</td></tr>`).join('');
+      const chainRows = data.chainat.map(r => `<tr><td>${escapeHtml(r.name)}</td><td class="num">${fmt(r.q[0])}</td><td class="num">${fmt(r.q[1])}</td><td class="num">${fmt(r.q[2])}</td><td class="num">${fmt(r.q[3])}</td><td class="num">${fmt(totalQ(r))}</td></tr>`).join('');
+      const districtRows = data.district.map(r => `<tr><td>${escapeHtml(r.name)}</td><td class="num">${fmt(r.q[0])}</td><td class="num">${fmt(r.q[1])}</td><td class="num">${fmt(r.q[2])}</td><td class="num">${fmt(r.q[3])}</td><td class="num">${fmt(totalQ(r))}</td></tr>`).join('');
+      document.getElementById('coverageTables').innerHTML = `
+        <table>
+          <thead><tr><th colspan="3">จังหวัดในเขตบริการสุขภาพที่ 3</th></tr><tr><th>จังหวัด</th><th class="num">มูลค่า</th><th class="num">สัดส่วน</th></tr></thead>
+          <tbody>${provinceRows}<tr><td><strong>รวมป้ายกราฟ</strong></td><td class="num"><strong>${fmt(provinceTotal)}</strong></td><td class="num"><strong>100.00%</strong></td></tr></tbody>
+        </table>
+        <table>
+          <thead><tr><th colspan="6">จังหวัดชัยนาท แยกหน่วยบริการ</th></tr><tr><th>หน่วยบริการ</th><th class="num">Q1</th><th class="num">Q2</th><th class="num">Q3</th><th class="num">Q4</th><th class="num">รวม</th></tr></thead>
+          <tbody>${chainRows}</tbody>
+        </table>
+        <table>
+          <thead><tr><th colspan="6">อำเภอสรรคบุรี แยกช่องทาง</th></tr><tr><th>ช่องทาง</th><th class="num">Q1</th><th class="num">Q2</th><th class="num">Q3</th><th class="num">Q4</th><th class="num">รวม</th></tr></thead>
+          <tbody>${districtRows}</tbody>
+        </table>`;
+
+      const herbRows = data.herbs.map(h => {
+        const q = h.qIn + h.qOut;
+        const v = h.vIn + h.vOut;
+        return `<tr>
+          <td>${escapeHtml(h.name)}</td>
+          <td class="num">${fmt(h.qIn)}</td><td class="num">${fmt(h.qOut)}</td><td class="num">${fmt(q)}</td>
+          <td class="num">${fmt(h.vIn)}</td><td class="num">${fmt(h.vOut)}</td><td class="num">${fmt(v)}</td>
+          <td class="num">${q ? fmt(v / q) : '-'}</td>
+        </tr>`;
+      }).join('');
+      const herbTotals = data.herbs.reduce((a, h) => ({
+        qIn: a.qIn + h.qIn, qOut: a.qOut + h.qOut, vIn: a.vIn + h.vIn, vOut: a.vOut + h.vOut
+      }), {qIn:0, qOut:0, vIn:0, vOut:0});
+      document.getElementById('herbTable').innerHTML = `
+        <table>
+          <thead><tr><th>รายการ</th><th class="num">กก. ในจังหวัด</th><th class="num">กก. นอกจังหวัด</th><th class="num">กก. รวม</th><th class="num">บาท ในจังหวัด</th><th class="num">บาท นอกจังหวัด</th><th class="num">บาท รวม</th><th class="num">บาท/กก.</th></tr></thead>
+          <tbody>${herbRows}<tr><td><strong>รวม</strong></td><td class="num"><strong>${fmt(herbTotals.qIn)}</strong></td><td class="num"><strong>${fmt(herbTotals.qOut)}</strong></td><td class="num"><strong>${fmt(herbTotals.qIn + herbTotals.qOut)}</strong></td><td class="num"><strong>${fmt(herbTotals.vIn)}</strong></td><td class="num"><strong>${fmt(herbTotals.vOut)}</strong></td><td class="num"><strong>${fmt(herbTotals.vIn + herbTotals.vOut)}</strong></td><td class="num"><strong>${fmt((herbTotals.vIn + herbTotals.vOut) / (herbTotals.qIn + herbTotals.qOut))}</strong></td></tr></tbody>
+        </table>`;
+    }
+
+    function init() {
+      groupedBarChart('historyChart', data.history.labels, [
+        {name:'ผลิตเสร็จ', values:data.history.production, color:colors.blue},
+        {name:'จำหน่าย', values:data.history.sales, color:colors.green}
+      ], {title:'มูลค่าย้อนหลัง 5 ปี'});
+
+      lineChart('cumulativeChart', data.monthly.labels, [
+        {name:'ผลิตสะสม', values:data.monthly.productionCumulative, color:colors.blue},
+        {name:'จำหน่ายสะสม', values:data.monthly.salesCumulative, color:colors.green}
+      ], {title:'ยอดสะสมรายเดือน'});
+
+      groupedBarChart('monthlyChart', data.monthly.labels, [
+        {name:'ผลิตเพิ่ม', values:data.monthly.productionIncrement, color:colors.teal},
+        {name:'จำหน่ายเพิ่ม', values:data.monthly.salesIncrement, color:colors.orange}
+      ], {title:'มูลค่าเพิ่มรายเดือน'});
+
+      groupedBarChart('csrChart', data.csr.map(d => d.name), [
+        {name:'มูลค่าสนับสนุน', values:data.csr.map(d => d.value), color:colors.pink}
+      ], {title:'ยาขอรับสนับสนุน', yLabel:'หมื่นบาท'});
+
+      renderDonut();
+      renderStack('chainatStack', data.chainat, totalQ(data.chainat[0]));
+      renderStack('districtStack', data.district, totalQ(data.district[0]));
+
+      const herbTotals = data.herbs.map(h => ({...h, qTotal:h.qIn + h.qOut, vTotal:h.vIn + h.vOut}));
+      const topValues = herbTotals.filter(h => h.vTotal > 0).sort((a,b) => b.vTotal - a.vTotal).slice(0, 8);
+      const topQty = herbTotals.filter(h => h.qTotal > 0).sort((a,b) => b.qTotal - a.qTotal).slice(0, 8);
+      renderBarList('herbValueBars', topValues, h => h.name, h => h.vTotal, 'linear-gradient(90deg, #1a73e8, #00a6a6)', 'บาท');
+      renderBarList('herbQtyBars', topQty, h => h.name, h => h.qTotal, 'linear-gradient(90deg, #1fbf75, #f7c948)', 'กก.');
+
+      const qIn = sum(data.herbs.map(h => h.qIn)), qOut = sum(data.herbs.map(h => h.qOut));
+      const vIn = sum(data.herbs.map(h => h.vIn)), vOut = sum(data.herbs.map(h => h.vOut));
+      renderBarList('sourceBars', [
+        {name:'ปริมาณในจังหวัด', value:qIn, unit:'กก.'},
+        {name:'ปริมาณนอกจังหวัด', value:qOut, unit:'กก.'},
+        {name:'มูลค่าในจังหวัด', value:vIn, unit:'บาท'},
+        {name:'มูลค่านอกจังหวัด', value:vOut, unit:'บาท'}
+      ], r => r.name, r => r.value, 'linear-gradient(90deg, #6b5bd2, #f45b93)', '');
+
+      renderTables();
+    }
+    init();
+  </script>
+</body>
+</html>
